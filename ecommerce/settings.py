@@ -9,11 +9,25 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
-import dj_database_url
-import os
+# settings.py
 
 import environ
+import os
+import dj_database_url
+from decouple import config
+
+DEVELOPMENT = config('DEVELOPMENT', default=False, cast=bool)
+SECRET_KEY = config('SECRET_KEY')
+ADMIN = config('ADMIN')
+DJANGO_SETTINGS_MODULE = config('DJANGO_SETTINGS_MODULE')
+DATABASE_URL = config('DATABASE_URL')
+STRIPE_PUBLISHABLE = config('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = config('STRIPE_SECRET')
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+EMAIL_ADDRESS = config('EMAIL_ADDRESS')
+EMAIL_PASSWORD = config('EMAIL_PASSWORD')
+
 
 # Initialise environment variables
 env = environ.Env()
@@ -204,3 +218,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = env("EMAIL_ADDRESS")
 EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
 EMAIL_PORT = 587
+
+# The rest  down are tests
